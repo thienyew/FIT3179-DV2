@@ -1,0 +1,72 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Box Plot for Birth Rates by Continent",
+    "data": {
+      "url": "https://raw.githubusercontent.com/thienyew/A-Comprehensive-Overview-of-Global-Trends/main/world_data_2023.csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "transform": [
+      {"filter": "datum.Continent !== null && datum.Continent !== ''"}
+    ],
+    "width": 800,
+    "height": 400,
+    "title": "Box Plot for Birth Rates by Continent",
+    "layer": [
+      {
+        "mark": {
+          "type": "boxplot",
+          "extent": "min-max"
+        },
+        "encoding": {
+          "x": {
+            "field": "Continent",
+            "type": "nominal",
+            "title": "Continent"
+          },
+          "y": {
+            "field": "Unemployment_Rate",
+            "type": "quantitative",
+            "title": "Birth Rate"
+          },
+          "color": {
+            "field": "Continent",
+            "type": "nominal"
+          },
+          "tooltip": [
+            {"field": "Continent", "title": "Continent"},
+            {"field": "Unemployment_Rate", "title": "Birth Rate"}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "tooltip": true,
+          "filled": true,
+          "opacity": 1
+        },
+        "encoding": {
+          "x": {
+            "field": "Continent",
+            "type": "nominal"
+          },
+          "y": {
+            "field": "Unemployment_Rate",
+            "type": "quantitative",
+            "title": "Birth Rate"
+          },
+          "color": {
+            "field": "Continent",
+            "type": "nominal"
+          }
+        }
+      }
+    ],
+    "config": {
+      "view": {"stroke": "transparent"},
+      "background": "#F0FFF0"
+    }
+  }
+  

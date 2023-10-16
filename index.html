@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+          background-color: #F0FFF0; /* Set the background color */
+        }
+        
+        #title {
+            text-align: center;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 24px;
+        }
+
+        #bibliography {
+            text-align: center;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 24px;
+        }
+
+        #authorship {
+          margin-top: 50px;
+          font-size: 20px;
+          font-style: italic;
+          text-align: right;
+        }
+
+        .content-container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        
+        #text {
+          margin-top: 50px;
+          font-size: 20px;
+          font-style: italic;
+          text-align: left;
+        }
+
+        #title2 {
+            text-align: center;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 20px;
+        }
+        
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+    <title>FIT 3179 Data Visualisation 2</title>
+</head>
+
+<body>
+
+    <div class="pure-g">
+        <div class="pure-u-3-2">
+          <div class = "pure-u-1">
+            <div id="title" style="text-align: center;">
+              <h1>Global Statistics</h1>
+              <p>In this visualization, the aim is to create a compelling and informative representation of global statistics,<br> covering a wide range of key indicators such as the Consumer Price Index (CPI), Life Expectancy and more. <br>This visualization data is obtained from kaggle and the dataset has all the information about the global statistics.</p>
+            </div>
+      </div>
+
+      <h1 style="margin-top: 20px">______________________________________________________________________________________________________________________________________________________________________________________</h1>
+
+      <div class="pure-u-1-2" style="text-align: center">
+        <div class="pure-u-3-2">
+          <div id="text" style="text-align: center">
+            <h2>Average Tax Revenue for each Continent</h2>
+            <p>This bar chart shows the average tax revenue for each country in each continent.</p> 
+          </div>
+        </div>
+        
+        <div id="BAR_CHART"></div>
+      </div>
+
+      <div class="pure-u-1-2" style="text-align: center">
+          <div class="pure-u-3-2">
+            <div id="text" style="text-align: center">
+              <h2>Infant Mortality Rate vs Life Expectancy</h2>
+              <p>This scatter plot is about the infant mortality rate against life expectancy around the world.</p>
+            </div>
+          </div>
+
+        <div id="SCATTER_PLOT"></div>
+      </div>
+
+      <div class="pure-u-1-2" style="text-align: center">
+          <div class="pure-u-3-2">
+            <div id="text" style="text-align: center">
+              <h2>Percentage Of Language Spoken as Official Language In The World</h2>
+              <p>This pie chart shows the number of the types of language spoken as an official language around the world</p>
+            </div>
+          </div>
+        <div id="PIE_CHART"></div>
+      </div>
+
+      <div class="pure-u-1-2" style="text-align: center">
+          <div class="pure-u-3-2">
+            <div id="text" style="text-align: center">
+              <h2>Unemployment rate of Primary education vs Tertiary education</h2>
+              <p>This bubble chart shows the unemployment rate of primary education vs tertairy education. <br>The size of the bubble indicates the unemployment rate. The bigger the size, the higher the unemployment rate.</p>
+            </div>
+          </div>
+
+        <div id="BUBBLE_CHART"></div>
+      </div>
+
+      <div class="pure-u-1-2" style="text-align: center">
+          <div class="pure-u-3-2">
+            <div id="text" style="text-align: center">
+              <h2>Global CPI Trends</h2>
+              <p>This map chart is about the CPI value around the world. As you can see Iran has the highest CPI value.</p>  
+            </div>
+            <div id="CPI_MAP"></div>
+          </div>
+      </div>
+
+      <div class="pure-u-1-2" style="text-align: center">
+        <div class="pure-u-3-2">
+          <div id="text" style="text-align: center">
+            <h2>Box Plot for Birth Rates by Continent</h2>
+            <p>This box plot shows the birth rates by each country in each continent.</p>  
+          </div>
+          <div id="BOX_PLOT"></div>
+        </div>
+    </div>
+
+      <h1 style="margin-top: 80px">______________________________________________________________________________________________________________________________________________________________________________________</h1>
+
+        <div class="pure-u-1" style="text-align: center;">
+            <div id="bibliography">
+                <h1>BIBLIOGRAPHY</h1>
+            </div>
+        </div>
+
+        <div class="pure-u-1"; style="margin-bottom: 10px">
+          <div id="text">
+              <p>Nidula Elgiriyewithana (Owner), Global Country Information Dataset 2023. Retrieved from https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023</p>
+          </div>
+        </div>
+
+        <div class="pure-u-1"; style="margin-bottom: 10px">
+          <div id="authorship">
+              <p>
+                Visualisation by Toh Thien Yew <br>Student ID: 32889879 <br>FIT3179 Data Visualization 2
+                <br>The dataset chosen is retrieved from Kaggle (<a href="https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023" target="_blank" rel="noreferrer noopener">Nidula Elgiriyewithana (Owner)<a), 
+                and the data has been preprocessed properly before use.
+              </p>
+          </div>
+      </div>
+  </div>
+    
+    
+    <script type="text/javascript">
+      var spec1 = "visualization.vl.json";
+      vegaEmbed('#CPI_MAP', spec1).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+
+      var spec2 = "visualization.vl-2.json";
+      vegaEmbed('#SCATTER_PLOT', spec2).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+      
+      var spec3 = "visualization.vl-3.json";
+      vegaEmbed('#PIE_CHART', spec3).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+
+      var spec4 = "visualization.vl-4.json";
+      vegaEmbed('#BUBBLE_CHART', spec4).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+
+      var spec5 = "visualization.vl-5.json";
+      vegaEmbed('#BAR_CHART', spec5).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+
+      var spec5 = "visualization.vl-6.json";
+      vegaEmbed('#BOX_PLOT', spec5).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+
+      
+    </script>
+</body>
+</html>

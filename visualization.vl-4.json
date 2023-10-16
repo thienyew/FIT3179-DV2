@@ -1,0 +1,128 @@
+{
+  "width": 800,
+  "height": 400,
+  "title": "Unemployment rate of Primary education vs Tertiary education",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/thienyew/A-Comprehensive-Overview-of-Global-Trends/main/world_data_2023.csv"
+  },
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Africa",
+          "Central America and the Caribbean",
+          "Central Asia",
+          "East Asia",
+          "Europe",
+          "Middle East",
+          "North America",
+          "Oceania",
+          "South America",
+          "South Asia",
+          "Southeast Asia"
+        ],
+        "labels": [
+          "Show All",
+          "Africa",
+          "Central America and the Caribbean",
+          "Central Asia",
+          "East Asia",
+          "Europe",
+          "Middle East",
+          "North America",
+          "Oceania",
+          "South America",
+          "South Asia",
+          "Southeast Asia"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Continent_selection == null || datum.Continent == Continent_selection"
+    }
+  ],
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "Primary_edu_enrollment",
+      "type": "quantitative",
+      "title": "Primary education enrollment"
+    },
+    "y": {
+      "field": "Tertiary_edu_enrollment",
+      "type": "quantitative",
+      "title": "Tertiary education enrollment"
+    },
+    "color": {
+      "field": "Continent",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Africa",
+          "Central America and the Caribbean",
+          "Central Asia",
+          "East Asia",
+          "Europe",
+          "Middle East",
+          "North America",
+          "Oceania",
+          "South America",
+          "South Asia",
+          "Southeast Asia"
+        ],
+        "range": [
+          "#3b6691",
+          "#736ca3",
+          "#ac6ea6",
+          "#da7397",
+          "#fc9783",
+          "#f88380",
+          "#f7bd5e",
+          "#ee924c",
+          "#ec734e",
+          "#de5b4e",
+          "#cc4349"
+        ]
+      },
+      "title": "Continent"
+    },
+    "size": {
+      "field": "Unemployment rate",
+      "type": "quantitative",
+      "scale": {
+        "type": "threshold",
+        "domain": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
+        "range": [50, 200, 350, 500, 650, 800]
+      }
+    },
+    "tooltip": [
+      { "field": "Country", "type": "ordinal", "title": "Country" },
+      {
+        "field": "Primary_edu_enrollment",
+        "type": "quantitative",
+        "format": ".2f",
+        "title": "Primary Enrollment %"
+      },
+      {
+        "field": "Tertiary_edu_enrollment",
+        "type": "quantitative",
+        "format": ".2f",
+        "title": "Tertiary Enrollment %"
+      },
+      {
+        "field": "Unemployment rate",
+        "type": "quantitative",
+        "format": ".2f",
+        "title": "Unemployment Rate %"
+      }
+    ]
+  },
+  "config": { "background": "#F0FFF0" }
+}

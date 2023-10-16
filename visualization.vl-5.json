@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/thienyew/A-Comprehensive-Overview-of-Global-Trends/main/world_data_2023.csv"
+  },
+  "width": 800,
+  "height": 400,
+  "title": "Average Tax Revenue for each Continent",
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "average",
+          "field": "Tax_Revenue ",
+          "as": "Average_BR"
+        },
+        {
+          "op": "count",
+          "field": "Country",
+          "as": "Country_Count"
+        }
+      ],
+      "groupby": ["Continent"]
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "highlight",
+          "select": {"type": "point", "on": "mouseover"}
+        },
+        { "name": "select", "select": "point" }
+      ],
+      "mark": {
+        "type": "bar",
+        "cursor": "pointer",
+        "stroke": "black"
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.Average_BR < 21",
+            "value": "lightgrey"
+          },
+          "value": "#0713f8"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 12,
+        "dy": -10
+      },
+      "encoding": {
+        "text": { "field": "Average_BR", "type": "quantitative", "format": ".2f" }
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Continent",
+      "type": "nominal",
+      "sort": "y",
+      "title": "Continents",
+      "axis": {
+        "titleFontSize": 15,
+        "titleFontWeight": "bold",
+        "labelFontSize": 13,
+        "titlePadding": -50
+      }
+    },
+    "y": {
+      "field": "Average_BR",
+      "type": "quantitative",
+      "stack": null,
+      "scale": {
+        "domain": [0, 30]
+      },
+      "axis": {
+        "title": "Average Tax Revenue",
+        "titleFontSize": 15,
+        "titleFontWeight": "bold",
+        "labelFontSize": 13
+      }
+    },
+    "fillOpacity": {
+      "condition": { "param": "select", "value": 1 },
+      "value": 0.3
+    },
+    "strokeWidth": {
+      "condition": [
+        {
+          "param": "highlight",
+          "empty": false,
+          "value": 1
+        },
+        {
+          "param": "select",
+          "empty": false,
+          "value": 2
+        }
+      ],
+      "value": 0
+    },
+    "tooltip": [
+      { "field": "Continent", "type": "nominal", "title": "Continent " },
+      { "field": "Country_Count", "type": "quantitative", "title": "Number of Countries " },
+      { "field": "Average_BR", "type": "quantitative", "title": "Average Birth Rate % ", "format": ".2f" }
+    ]
+  },
+  "config": {
+    "scale": { "bandPaddingInner": 0.3 },
+    "view": { "stroke": "transparent" },
+    "background": "#F0FFF0"
+  }
+}

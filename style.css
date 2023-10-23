@@ -71,23 +71,8 @@ p {
     width: 600px;
 }
 
-#bump_chart {
-    height: 400px;
-    width: 600px;
-}
-
 #choropleth_map {
     height: 400px;
-    width: 600px;
-}
-
-#waterfall_chart {
-    height: 450px;
-    width: 600px;
-}
-
-#heat_map {
-    height: 450px;
     width: 600px;
 }
 
